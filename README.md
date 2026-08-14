@@ -2,7 +2,7 @@
 
 > An interactive 3D total solar eclipse simulator and historical eclipse archive.
 
-**Live demo:** [solar-sclipse.taaissu.workers.dev](https://solar-sclipse.taaissu.workers.dev/)
+**Live demo:** [solar-sclipse.pages.dev](https://solar-sclipse.pages.dev/)
 
 Solar Sclipse is a browser-based orbital and ground-sky visualization for exploring the **12 August 2026 total solar eclipse** and selected historical total solar eclipses. The simulator combines a rotatable Earth, a moving umbral path, observation-point telemetry, a timeline scrubber, ground sky view, and replayable archive scenarios in one responsive interface.
 
@@ -41,11 +41,11 @@ Start with the default 2026 eclipse simulation, then use **Archive** to browse h
 
 ## Technology
 
-The project is built with **React**, **TypeScript**, **Vite**, **Tailwind CSS**, and **Three.js**. The production build is served through a Cloudflare Worker at the live demo URL.
+The project is built with **React**, **TypeScript**, **Vite**, **Tailwind CSS**, and **Three.js**. The production build is served through Cloudflare Pages at the live demo URL.
 
 ## Repository topics
 
-`solar-eclipse` `eclipse-simulator` `astronomy` `space` `threejs` `react` `typescript` `vite` `cloudflare-workers` `interactive-visualization` `science-education`
+`solar-eclipse` `eclipse-simulator` `astronomy` `space` `threejs` `react` `typescript` `vite` `cloudflare-pages` `interactive-visualization` `science-education`
 
 ## Attribution and data notes
 
