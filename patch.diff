@@ -1,0 +1,56 @@
+--- src/utils/astronomy.ts
++++ src/utils/astronomy.ts
+@@ -113,24 +113,6 @@
+   return { lat, lon };
+ }
+ 
+-function extrapolateLatLon(p1: LatLon, p2: LatLon, t: number): LatLon {
+-  const v1 = latLonToVector3(p1.lat, p1.lon, 1);
+-  const v2 = latLonToVector3(p2.lat, p2.lon, 1);
+-  
+-  const vx = v1[0] + (v2[0] - v1[0]) * t;
+-  const vy = v1[1] + (v2[1] - v1[1]) * t;
+-  const vz = v1[2] + (v2[2] - v1[2]) * t;
+-  
+-  const len = Math.sqrt(vx * vx + vy * vy + vz * vz);
+-  const nx = vx / len;
+-  const ny = vy / len;
+-  const nz = vz / len;
+-  
+-  const lat = Math.asin(ny) * (180 / Math.PI);
+-  const lon = Math.atan2(nz, nx) * (180 / Math.PI);
+-  return { lat, lon };
+-}
+-
+ /**
+  * Get interpolated umbra center coordinates for the current timestamp using 3D Geodesic Slerp
+  * based on exact NASA/Espenak Besselian elements via astronomy-engine.
+  */
+ export function getUmbraPosition(timeSeconds: number): LatLon | null {
+   const waypoints = UMBRA_PATH_WAYPOINTS;
+   const len = waypoints.length;
+-  if (len === 0) {
+-    return null;
+-  }
+-
+-  // Before first contact -> Extrapolate backwards
+-  if (timeSeconds < waypoints[0].time) {
+-    const w1 = waypoints[0];
+-    const w2 = waypoints[1];
+-    const duration = w2.time - w1.time;
+-    const t = duration > 0 ? (timeSeconds - w1.time) / duration : 0; // t will be negative
+-    return extrapolateLatLon(w1.coords, w2.coords, t);
+-  }
+-
+-  // After last contact -> Extrapolate forwards
+-  if (timeSeconds > waypoints[len - 1].time) {
+-    const w1 = waypoints[len - 2];
+-    const w2 = waypoints[len - 1];
+-    const duration = w2.time - w1.time;
+-    const t = duration > 0 ? (timeSeconds - w1.time) / duration : 0; // t will be > 1
+-    return extrapolateLatLon(w1.coords, w2.coords, t);
++  if (len === 0 || timeSeconds < waypoints[0].time || timeSeconds > waypoints[len - 1].time) {
++    return null;
+   }
+ 
+   for (let i = 0; i < len - 1; i++) {

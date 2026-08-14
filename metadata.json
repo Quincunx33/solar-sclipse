@@ -1,0 +1,8 @@
+{
+  "name": "2026 Total Solar Eclipse ",
+  "description": "Interactive 3D simulation and scientific visualizer for the August 12, 2026 Total Solar Eclipse across Greenland, Iceland, and Spain.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
